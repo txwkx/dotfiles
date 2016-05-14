@@ -1,0 +1,17 @@
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[user]
+	name =
+	email =
+[push]
+	default = simple
+[color]
+	ui = true
+[alias]
+	s = status -s
+	lg = log --oneline --decorate --all --graph
+	co = checkout
+[core]
+	autocrlf = input
