@@ -3,15 +3,17 @@
 	smudge = git lfs smudge %f
 	required = true
 [user]
-	name =
-	email =
+	name = Todor Tsankov
+	email = tsankov.todya@gmail.com
 [push]
 	default = simple
 [color]
 	ui = true
 [alias]
 	s = status -s
-	lg = log --oneline --decorate --all --graph
+	lg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --all --graph
 	co = checkout
+	ci = commit
+	publish = "!git push -u origin $(git branch-name)"
 [core]
 	autocrlf = input
