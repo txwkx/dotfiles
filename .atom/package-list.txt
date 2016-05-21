@@ -1,0 +1,9 @@
+es6-javascript@0.7.0
+linter@1.11.4
+merge-conflicts@1.4.2
+minimap@4.23.5
+react@0.15.0
+react-es6-snippets@0.3.0
+seti-ui@1.2.2
+
+
