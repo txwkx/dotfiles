@@ -18,3 +18,5 @@
 	publish = "!git push -u origin $(git branch-name)"
 [core]
 	autocrlf = input
+[pull]
+	rebase = true
