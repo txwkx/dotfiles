@@ -1,55 +1,59 @@
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, "src"),
-  devtool: debug ? "inline-sourcemap" : null,
-  entry: "./js/client.js",
+  context: path.resolve(__dirname, ''),
+  entry: "./src/app.js",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, '/')
+  },
   module: {
-    preLoaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        include: [new RegExp(path.join(__dirname, 'src'))],
-        loader: 'eslint'
-      }
-    ],
-    loaders: [
+        test: /\.js$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true,
+        },
+      },
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: ['es2015', 'react', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
+          plugins: ['react-html-attrs']
         }
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'style!css!sass'
+        use: [
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(jpg|png|gif)$/,
-        include: /img/,
-        loader: 'url'
+        loader: 'url-loader',
+        options: {
+          limit: 25000
+        }
       }
     ]
   },
-  output: {
-    path: __dirname + "/src/",
-    filename: "bundle.js"
-  },
-  devServer: {
-    port: 3333,
-    contentBase: "src"
-  },
-  eslint: {
-    configFile: '.eslintrc'
-  },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
   ],
+  devServer: {
+    port: 1234,
+    historyApiFallback: true,
+    stats: 'errors-only',
+    overlay: true,
+  }
 };
