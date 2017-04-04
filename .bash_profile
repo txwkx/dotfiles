@@ -16,6 +16,8 @@ alias ..="cd .."
 # shortcuts
 alias dl="cd ~/Downloads"
 alias g="git"
+alias n="npm"
+alias y="yarn"
 
 # list files
 alias ls="ls -laF -G"
