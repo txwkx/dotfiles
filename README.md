@@ -7,17 +7,33 @@
 3. Setup `git`:
 ```bash
 # Config a git user
-git config --global user.email "EMAIL"
-git config --global user.name "NAME"
+$ git config --global user.email "EMAIL"
+$ git config --global user.name "NAME"
 
-# Generate a new ssh key and copy it 
-ssh-keygen -t rsa -b 4096 -C "EMAIL"
-eval "$(ssh-agent -s)"
-ssh-add -K ~/.ssh/id_rsa
-pbcopy < ~/.ssh/id_rsa.pub
+# Generate a new SSH key and copy it 
+$ ssh-keygen -t rsa -b 4096 -C "EMAIL"
+$ eval "$(ssh-agent -s)"
+$ ssh-add -K ~/.ssh/id_rsa
+$ pbcopy < ~/.ssh/id_rsa.pub
 
-# Go to github.com -> Settings -> SSH and GPG Keys
-# Click "New SSH Key" -> name, paste, save.
+# Go to github.com -> Settings -> SSH and GPG keys
+# Click "New SSH key" -> name, paste, save.
+
+# Generate a new GPG key
+# RSA, 4096 bits, default length and no expiry
+$ gpg --full-generate-key
+
+# Run and copy the GPG key ID
+# [value after "sec 4096R/{keyId}"]
+$ gpg --list-secret-keys --keyid-format LONG
+
+# ASCHII armor the GPG key and copy it
+$ gpg --armor --export {keyId}
+
+# Go to github.com -> Settings -> SSH and GPG keys
+# Click "New GPG key" -> paste, save.
+
+# Voilà 🦾
 ```
 
 ## How to install my **prime** `terminal` setup 💻 :

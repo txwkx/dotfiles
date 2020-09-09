@@ -15,10 +15,11 @@
 	lg = log --pretty=format:“%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]” --decorate --all --graph
 	b = branch -a
 	bd = branch -D
-	co = checkout
 	ci = commit
+	co = checkout
+	cp = cherry-pick
 	publish = “!git push -u origin $(git branch-name)”
-	rbs = “!git rebase -p origin/master”
+	rbs = “!git rebase -p origin/develop
 [core]
 	autocrlf = input
 	excludefile = ~/.gitignore
