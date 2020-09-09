@@ -1,6 +1,7 @@
 [filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 	required = true
 [user]
 	name = Todor Tsankov
@@ -11,12 +12,22 @@
 	ui = true
 [alias]
 	s = status -s
-	lg = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --all --graph
+	lg = log --pretty=format:“%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]” --decorate --all --graph
+	b = branch -a
+	bd = branch -D
 	co = checkout
 	ci = commit
-	branch-name = "!git rev-parse --abbrev-ref HEAD"
-	publish = "!git push -u origin $(git branch-name)"
+	publish = “!git push -u origin $(git branch-name)”
+	rbs = “!git rebase -p origin/master”
 [core]
 	autocrlf = input
+	excludefile = ~/.gitignore
 [pull]
 	rebase = true
+[commit]
+	gpgsign = true
+[branch]
+	sort = -authordate
+[rebase]
+	autoStash = true
+

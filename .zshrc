@@ -2,13 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/towko/.oh-my-zsh
+export ZSH="/Users/${user}/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 
+ZSH_DISABLE_COMPFIX=true
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -52,6 +53,8 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+plugins=(zsh-autosuggestions)
+plugins=(zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,6 +96,7 @@ alias dl="cd ~/Downloads"
 alias g="git"
 alias n="npm"
 alias y="yarn"
+alias c="cdk"
 
 # list files
 alias ls="ls -laF -G"
@@ -110,9 +114,6 @@ alias localip="ipconfig getifaddr en0"
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
-# Dev - related
-alias gosass="sass --watch src/scss --sourcemap=none --style compressed --no-cache"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"

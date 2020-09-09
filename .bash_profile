@@ -18,6 +18,7 @@ alias dl="cd ~/Downloads"
 alias g="git"
 alias n="npm"
 alias y="yarn"
+alias c="cdk"
 
 # list files
 alias ls="ls -laF -G"
